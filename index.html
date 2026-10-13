@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado de Matemática</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="topo">
+      <p class="sobretitulo">Simulado</p>
+      <h1>Matemática para Computação</h1>
+      <p class="temas">Conjuntos · Intervalos · Funções · Lógica proposicional · Predicados · Demonstração</p>
+    </header>
+
+    <!-- Tela do questionário -->
+    <section id="quiz" class="tela">
+      <div class="progresso">
+        <span id="contador">Questão 1 de 10</span>
+        <div class="barra"><div id="barra-preenchida"></div></div>
+      </div>
+
+      <article class="cartao" id="questao"></article>
+
+      <nav class="navegacao">
+        <button id="btn-anterior" class="btn btn-secundario" type="button">Anterior</button>
+        <button id="btn-proxima" class="btn btn-primario" type="button" disabled>Próxima</button>
+      </nav>
+    </section>
+
+    <!-- Tela do gabarito -->
+    <section id="gabarito" class="tela oculta">
+      <div class="resultado">
+        <p class="resultado-rotulo">Seu resultado</p>
+        <p class="resultado-nota"><span id="acertos">0</span><span class="resultado-total">/10</span></p>
+        <p id="resultado-mensagem" class="resultado-mensagem"></p>
+        <div class="legenda">
+          <span><i class="ponto ponto-certo"></i>Resposta correta</span>
+          <span><i class="ponto ponto-errado"></i>Sua resposta errada</span>
+        </div>
+      </div>
+
+      <div id="lista-gabarito"></div>
+
+      <nav class="navegacao navegacao-centro">
+        <button id="btn-refazer" class="btn btn-primario" type="button">Refazer simulado</button>
+      </nav>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
