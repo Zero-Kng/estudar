@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulado de Matemática</title>
+  <title>Simulados de Matemática</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -12,13 +12,24 @@
 <body>
   <main class="container">
     <header class="topo">
-      <p class="sobretitulo">Simulado</p>
+      <p class="sobretitulo">Simulados</p>
       <h1>Matemática para Computação</h1>
       <p class="temas">Conjuntos · Intervalos · Funções · Lógica proposicional · Predicados · Demonstração</p>
     </header>
 
+    <!-- Tela inicial: escolha do simulado -->
+    <section id="inicio" class="tela">
+      <h2 class="titulo-secao">Escolha um simulado</h2>
+      <div id="lista-simulados" class="lista-simulados"></div>
+    </section>
+
     <!-- Tela do questionário -->
-    <section id="quiz" class="tela">
+    <section id="quiz" class="tela oculta">
+      <div class="barra-simulado">
+        <button class="btn-voltar" type="button" data-voltar>← Simulados</button>
+        <span id="nome-simulado" class="nome-simulado"></span>
+      </div>
+
       <div class="progresso">
         <span id="contador">Questão 1 de 10</span>
         <div class="barra"><div id="barra-preenchida"></div></div>
@@ -36,7 +47,7 @@
     <section id="gabarito" class="tela oculta">
       <div class="resultado">
         <p class="resultado-rotulo">Seu resultado</p>
-        <p class="resultado-nota"><span id="acertos">0</span><span class="resultado-total">/10</span></p>
+        <p class="resultado-nota"><span id="acertos">0</span><span id="total" class="resultado-total">/10</span></p>
         <p id="resultado-mensagem" class="resultado-mensagem"></p>
         <div class="legenda">
           <span><i class="ponto ponto-certo"></i>Resposta correta</span>
@@ -47,6 +58,7 @@
       <div id="lista-gabarito"></div>
 
       <nav class="navegacao navegacao-centro">
+        <button class="btn btn-secundario" type="button" data-voltar>Escolher outro simulado</button>
         <button id="btn-refazer" class="btn btn-primario" type="button">Refazer simulado</button>
       </nav>
     </section>

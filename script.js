@@ -1,6 +1,9 @@
+// Cada simulado tem título, descrição e a lista de questões.
+// Em cada questão, "correta" é o índice da alternativa certa (0 = a, 1 = b, ...).
+// Para adicionar um simulado novo, acrescente outro objeto no array "simulados" lá embaixo.
+
 // Questões extraídas de "simulado-matematica e logica.md" e "simulado-matematica e logica 2.md".
-// "correta" é o índice da alternativa certa (0 = a, 1 = b, ...).
-const questoes = [
+const questoesSimulado1 = [
   {
     tema: "Aprofundamento de Funções",
     enunciado: "<p>Funções periódicas têm um padrão que se repete em intervalos regulares. Qual é o período da função f(x) = sen(2πx/5)?</p>",
@@ -105,13 +108,26 @@ const questoes = [
   }
 ];
 
+const simulados = [
+  {
+    titulo: "Simulado 1",
+    descricao: "Funções, predicados, lógica proposicional, demonstração, conjuntos e intervalos.",
+    questoes: questoesSimulado1
+  }
+];
+
 const LETRAS = ["a", "b", "c", "d", "e"];
 
+let simuladoAtual = null;
+let questoes = [];
 let atual = 0;
-let respostas = new Array(questoes.length).fill(null);
+let respostas = [];
 
+const telaInicio = document.getElementById("inicio");
 const telaQuiz = document.getElementById("quiz");
 const telaGabarito = document.getElementById("gabarito");
+const listaSimulados = document.getElementById("lista-simulados");
+const nomeSimulado = document.getElementById("nome-simulado");
 const cartaoQuestao = document.getElementById("questao");
 const contador = document.getElementById("contador");
 const barra = document.getElementById("barra-preenchida");
@@ -119,6 +135,43 @@ const btnAnterior = document.getElementById("btn-anterior");
 const btnProxima = document.getElementById("btn-proxima");
 const btnRefazer = document.getElementById("btn-refazer");
 const listaGabarito = document.getElementById("lista-gabarito");
+
+function mostrarTela(tela) {
+  [telaInicio, telaQuiz, telaGabarito].forEach((t) => t.classList.toggle("oculta", t !== tela));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Tela inicial: um cartão por simulado, com os temas que ele cobre.
+function mostrarInicio() {
+  listaSimulados.innerHTML = "";
+  simulados.forEach((simulado) => {
+    const temas = [...new Set(simulado.questoes.map((q) => q.tema))];
+    const botao = document.createElement("button");
+    botao.type = "button";
+    botao.className = "opcao-simulado";
+    botao.innerHTML =
+      `<span class="opcao-topo">` +
+        `<span class="opcao-titulo">${simulado.titulo}</span>` +
+        `<span class="opcao-qtd">${simulado.questoes.length} questões</span>` +
+      `</span>` +
+      `<span class="opcao-descricao">${simulado.descricao}</span>` +
+      `<span class="opcao-temas">${temas.map((t) => `<span class="tema">${t}</span>`).join("")}</span>` +
+      `<span class="opcao-acao">Começar →</span>`;
+    botao.addEventListener("click", () => iniciarSimulado(simulado));
+    listaSimulados.appendChild(botao);
+  });
+  mostrarTela(telaInicio);
+}
+
+function iniciarSimulado(simulado) {
+  simuladoAtual = simulado;
+  questoes = simulado.questoes;
+  atual = 0;
+  respostas = new Array(questoes.length).fill(null);
+  nomeSimulado.textContent = simulado.titulo;
+  mostrarQuestao();
+  mostrarTela(telaQuiz);
+}
 
 // Monta a lista de alternativas. No modo gabarito, marca certa (verde) e errada (vermelho).
 function criarAlternativas(questao, indiceQuestao, modoGabarito) {
@@ -183,12 +236,14 @@ function escolher(indice) {
 
 function mostrarGabarito() {
   const acertos = respostas.filter((r, i) => r === questoes[i].correta).length;
+  const proporcao = acertos / questoes.length;
 
   document.getElementById("acertos").textContent = acertos;
+  document.getElementById("total").textContent = `/${questoes.length}`;
   document.getElementById("resultado-mensagem").textContent =
-    acertos === questoes.length ? "Gabaritou! Todas as respostas corretas." :
-    acertos >= 7 ? "Muito bom! Revise as questões em vermelho abaixo." :
-    acertos >= 5 ? "Bom caminho. Leia as explicações das que errou." :
+    proporcao === 1 ? "Gabaritou! Todas as respostas corretas." :
+    proporcao >= 0.7 ? "Muito bom! Revise as questões em vermelho abaixo." :
+    proporcao >= 0.5 ? "Bom caminho. Leia as explicações das que errou." :
     "Vale revisar o conteúdo. As explicações abaixo ajudam.";
 
   listaGabarito.innerHTML = "";
@@ -213,9 +268,7 @@ function mostrarGabarito() {
     listaGabarito.appendChild(cartao);
   });
 
-  telaQuiz.classList.add("oculta");
-  telaGabarito.classList.remove("oculta");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  mostrarTela(telaGabarito);
 }
 
 btnAnterior.addEventListener("click", () => {
@@ -235,13 +288,10 @@ btnProxima.addEventListener("click", () => {
   }
 });
 
-btnRefazer.addEventListener("click", () => {
-  atual = 0;
-  respostas = new Array(questoes.length).fill(null);
-  telaGabarito.classList.add("oculta");
-  telaQuiz.classList.remove("oculta");
-  mostrarQuestao();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+btnRefazer.addEventListener("click", () => iniciarSimulado(simuladoAtual));
+
+document.querySelectorAll("[data-voltar]").forEach((botao) => {
+  botao.addEventListener("click", mostrarInicio);
 });
 
-mostrarQuestao();
+mostrarInicio();

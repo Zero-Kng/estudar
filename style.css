@@ -85,6 +85,125 @@ h1 {
   display: none;
 }
 
+/* Tela inicial */
+.titulo-secao {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+.lista-simulados {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.opcao-simulado {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 22px 24px;
+  text-align: left;
+  font: inherit;
+  color: var(--texto);
+  background: var(--cartao);
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio);
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.opcao-simulado:hover {
+  border-color: var(--destaque);
+}
+
+.opcao-simulado:active {
+  transform: scale(0.99);
+}
+
+.opcao-simulado:focus-visible {
+  outline: 2px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+.opcao-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.opcao-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.opcao-qtd {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  white-space: nowrap;
+}
+
+.opcao-descricao {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.opcao-temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.opcao-temas .tema {
+  margin-bottom: 0;
+}
+
+.opcao-acao {
+  margin-top: 4px;
+  font-weight: 600;
+  color: var(--destaque);
+}
+
+/* Barra com o nome do simulado e o botão de voltar */
+.barra-simulado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn-voltar {
+  padding: 6px 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--destaque);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-voltar:hover {
+  text-decoration: underline;
+}
+
+.btn-voltar:focus-visible {
+  outline: 2px solid var(--destaque);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.nome-simulado {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
 /* Progresso */
 .progresso {
   display: flex;
@@ -283,6 +402,7 @@ h1 {
 }
 
 .navegacao-centro {
+  flex-wrap: wrap;
   justify-content: center;
 }
 
