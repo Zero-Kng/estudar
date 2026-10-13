@@ -275,6 +275,35 @@ h1 {
   overflow-x: auto;
 }
 
+.enunciado .figura {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 12px;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.tabela-verdade {
+  border-collapse: collapse;
+  margin: 0 0 12px;
+  font-family: var(--fonte-texto);
+  font-size: 0.9rem;
+}
+
+.tabela-verdade th,
+.tabela-verdade td {
+  padding: 4px 10px;
+  text-align: center;
+  border: 1px solid var(--borda);
+}
+
+.tabela-verdade th {
+  background: var(--fundo);
+  font-weight: 600;
+}
+
 .porque {
   font-family: var(--fonte-texto);
   font-weight: 600;

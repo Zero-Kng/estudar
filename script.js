@@ -113,6 +113,37 @@ const simulados = [
     titulo: "Simulado 1",
     descricao: "Funções, predicados, lógica proposicional, demonstração, conjuntos e intervalos.",
     questoes: questoesSimulado1
+  },
+  // Listas de exercícios da Estácio, definidas em listas-estacio.js
+  {
+    titulo: "Lista · Conjuntos e Contagem",
+    descricao: "Operações com conjuntos, intervalos, módulo, anagramas, combinações e princípio multiplicativo.",
+    questoes: listaConjuntos
+  },
+  {
+    titulo: "Lista · Gráficos",
+    descricao: "Intervalos, plano cartesiano, definição de função e leitura de gráficos.",
+    questoes: listaGraficos
+  },
+  {
+    titulo: "Lista · Funções",
+    descricao: "Funções por partes, imagem, domínio, injetora/sobrejetora/bijetora e periodicidade.",
+    questoes: listaFuncoes
+  },
+  {
+    titulo: "Lista · Cálculo Proposicional",
+    descricao: "Tautologia, tabelas-verdade, álgebra booleana e valor lógico de proposições compostas.",
+    questoes: listaProposicional
+  },
+  {
+    titulo: "Lista · Cálculo de Predicados",
+    descricao: "Quantificadores, negação, conjunto-verdade, sentenças abertas e Prolog.",
+    questoes: listaPredicados
+  },
+  {
+    titulo: "Lista · Métodos de Demonstração",
+    descricao: "Modus ponens, absurdo, exaustão, contraposição, indução e questões \"I PORQUE II\".",
+    questoes: listaDemonstracao
   }
 ];
 
